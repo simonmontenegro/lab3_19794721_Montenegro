@@ -1,10 +1,20 @@
 package laboratorio3_19794721;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Archivo {
     //Atributos
     public String nombre;
     public String fecha;
     public String contenido;
+    
+    public String obtenerFechaActual() {
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        Date fechaActual = new Date();
+        return df.format(fechaActual);
+    }
     
     //Metodos
     public String getNombre() {
@@ -19,9 +29,6 @@ public class Archivo {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
-    }
 
     public String getContenido() {
         return contenido;
@@ -31,9 +38,9 @@ public class Archivo {
         this.contenido = contenido;
     }
     
-    public void crearArchivo(String nom, String fec, String con){
+    public void crearArchivo(String nom, String con){
         nombre = nom;
-        fecha = fec;
+        fecha = obtenerFechaActual();
         contenido = con;
     }
     

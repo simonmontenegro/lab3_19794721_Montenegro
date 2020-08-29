@@ -1,7 +1,9 @@
 package laboratorio3_19794721;
 
-import java.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Commit {
     //Atributos
@@ -9,6 +11,13 @@ public class Commit {
     public String mensaje;
     public String tiempo;
     public ArrayList<Archivo> archivos = new ArrayList<Archivo>();
+    
+    
+    public String obtenerFechaActual() {
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        Date fechaActual = new Date();
+        return df.format(fechaActual);
+    }
     
     //Metodos
     public String getAutor() {
@@ -41,10 +50,10 @@ public class Commit {
     public void setArchivos(ArrayList<Archivo> archivos) {
         this.archivos = archivos;
     }
-    public void crearCommit(String aut, String mens, String tiem, ArrayList<Archivo> arc){
+    public void crearCommit(String aut, String mens, ArrayList<Archivo> arc){
         autor = aut;
         mensaje = mens;
-        tiempo = tiem;
+        tiempo = obtenerFechaActual();
         archivos = arc;
     }
 }
