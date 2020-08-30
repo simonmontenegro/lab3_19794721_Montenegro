@@ -38,10 +38,11 @@ public class Archivo {
         this.contenido = contenido;
     }
     
+    //Constructor
     public void crearArchivo(String nom, String con){
-        nombre = nom;
-        fecha = obtenerFechaActual();
-        contenido = con;
+        this.nombre = nom;
+        this.fecha = obtenerFechaActual();
+        this.contenido = con;
     }
     
 }

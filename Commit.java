@@ -50,10 +50,12 @@ public class Commit {
     public void setArchivos(ArrayList<Archivo> archivos) {
         this.archivos = archivos;
     }
+    
+    //Constructor
     public void crearCommit(String aut, String mens, ArrayList<Archivo> arc){
-        autor = aut;
-        mensaje = mens;
-        tiempo = obtenerFechaActual();
-        archivos = arc;
+        this.autor = aut;
+        this.mensaje = mens;
+        this.tiempo = obtenerFechaActual();
+        this.archivos = arc;
     }
 }

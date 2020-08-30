@@ -3,27 +3,39 @@ package laboratorio3_19794721;
 import java.util.ArrayList;
 
 public class Laboratorio3_19794721 {
-    
-    public static void main(String[] args) {
-        Archivo arch1 = new Archivo();
-        arch1.crearArchivo("Simon Montenegro", "Este es mi primer archivo.");
+    public static Zonas gitInit(String nombre, String autor){
+        ArrayList<Archivo> ws = new ArrayList<Archivo>();
+        ArrayList<Archivo> ind = new ArrayList<Archivo>();
+        ArrayList<Commit> lr = new ArrayList<Commit>();
+        ArrayList<Commit> rr = new ArrayList<Commit>();
         
-        Archivo arch2 = new Archivo();
-        arch2.crearArchivo("Maria Canoles", "Este es mi segundo archivo.");        
+        WorkSpace workSpace = new WorkSpace();
+        Index index = new Index();
+        LocalRepository localRepository = new LocalRepository();
+        RemoteRepository remoteRepository = new RemoteRepository();
         
-        ArrayList<Archivo> lista = new ArrayList<Archivo>();
-        lista.add(arch1);
-        lista.add(arch2);
+        workSpace.crearWorkSpace(ws);   
+        index.crearIndex(ind);
+        localRepository.crearLocalRepository(lr);
+        remoteRepository.crearRemoteRepository(rr);
         
-        System.out.println(arch1.fecha);
+        Zonas zonas = new Zonas();
+        zonas.crearZonas(nombre, autor, workSpace, index, localRepository, remoteRepository);
         
-        Commit comm1 = new Commit();
-        comm1.crearCommit("Simon", "Mensaje del commit", lista);
-        System.out.println(comm1.mensaje);
-        
+        return zonas;
         
     }
     
+    
+    public static void main(String[] args) {
+        Zonas zonas = new Zonas();
+        zonas = gitInit("Primer Repositorio", "Simon Montenegro");
+        Archivo arch = new Archivo();
+        arch.crearArchivo("Simon.txt", "contenidooooo");
+        zonas.workSpace.archivos.add(arch);
+        System.out.println(zonas.workSpace.archivos.get(0).contenido);
+    }
+
     
 }
 

@@ -15,5 +15,8 @@ public class WorkSpace {
         this.archivos = archivos;
     }
     
-    
+    //Constructor
+    public void crearWorkSpace(ArrayList<Archivo> arc){
+        this.archivos = arc;
+    }
 }

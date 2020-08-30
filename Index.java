@@ -14,5 +14,9 @@ public class Index {
     public void setArchivos(ArrayList<Archivo> archivos) {
         this.archivos = archivos;
     }
-
+    
+    //Constructor
+    public void crearIndex(ArrayList<Archivo> arc){
+        this.archivos = arc;
+    }
 }
