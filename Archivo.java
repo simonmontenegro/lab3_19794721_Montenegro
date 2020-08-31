@@ -16,28 +16,6 @@ public class Archivo {
         return df.format(fechaActual);
     }
     
-    //Metodos
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getFecha() {
-        return fecha;
-    }
-
-
-    public String getContenido() {
-        return contenido;
-    }
-
-    public void setContenido(String contenido) {
-        this.contenido = contenido;
-    }
-    
     //Constructor
     public void crearArchivo(String nom, String con){
         this.nombre = nom;

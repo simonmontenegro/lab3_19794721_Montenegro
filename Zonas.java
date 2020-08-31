@@ -20,66 +20,9 @@ public class Zonas {
         return df.format(fechaActual);
     }
     
-    //Metodos
-    public String getNombreRepositorio() {
-        return nombreRepositorio;
-    }
-
-    public void setNombreRepositorio(String nombreRepositorio) {
-        this.nombreRepositorio = nombreRepositorio;
-    }
-
-    public String getAutor() {
-        return autorRepositorio;
-    }
-
-    public void setAutor(String autor) {
-        this.autorRepositorio = autorRepositorio;
-    }
-
-    public String getFechaCreación() {
-        return fechaCreación;
-    }
-
-    public void setFechaCreación(String fechaCreación) {
-        this.fechaCreación = fechaCreación;
-    }
-    
-    public WorkSpace getWorkSpace() {
-        return workSpace;
-    }
-
-    public void setWorkSpace(WorkSpace workSpace) {
-        this.workSpace = workSpace;
-    }
-
-    public Index getIndex() {
-        return index;
-    }
-
-    public void setIndex(Index index) {
-        this.index = index;
-    }
-
-    public LocalRepository getLocalRepository() {
-        return localRepository;
-    }
-
-    public void setLocalRepository(LocalRepository localRepository) {
-        this.localRepository = localRepository;
-    }
-
-    public RemoteRepository getRemoteRepository() {
-        return remoteRepository;
-    }
-
-    public void setRemoteRepository(RemoteRepository remoteRepository) {
-        this.remoteRepository = remoteRepository;
-    }
-    
     //Constructor
     public void crearZonas(String nombre, String autor, WorkSpace workspace, Index index,
-            LocalRepository localrepository, RemoteRepository remoterepository){
+        LocalRepository localrepository, RemoteRepository remoterepository){
         this.nombreRepositorio = nombre;
         this.autorRepositorio = autor;
         this.fechaCreación = obtenerFechaActual();
@@ -87,5 +30,21 @@ public class Zonas {
         this.index = index;
         this.localRepository = localrepository;
         this.remoteRepository = remoterepository;
+    }
+    
+    //Metodos
+    public void gitInit(String nombre, String autor){
+        WorkSpace ws = new WorkSpace();
+        Index ind = new Index();
+        LocalRepository lr = new LocalRepository();
+        RemoteRepository rr = new RemoteRepository();
+        
+        this.crearZonas(nombre, autor, ws, ind, lr, rr);
+    }
+    
+    public void crearNuevoArchivo(String nombre, String contenido, Zonas zona){
+        Archivo nuevoArchivo = new Archivo();
+        nuevoArchivo.crearArchivo(nombre, contenido);
+        this.workSpace.archivos.add(nuevoArchivo);
     }
 }

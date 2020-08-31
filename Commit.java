@@ -18,39 +18,7 @@ public class Commit {
         Date fechaActual = new Date();
         return df.format(fechaActual);
     }
-    
-    //Metodos
-    public String getAutor() {
-        return autor;
-    }
-
-    public void setAutor(String autor) {
-        this.autor = autor;
-    }
-
-    public String getMensaje() {
-        return mensaje;
-    }
-
-    public void setMensaje(String mensaje) {
-        this.mensaje = mensaje;
-    }
-    
-    public String getTiempo() {
-        return tiempo;
-    }
-
-    public void setTiempo(String tiempo) {
-        this.tiempo = tiempo;
-    }
-    
-    public ArrayList<Archivo> getArchivos() {
-        return archivos;
-    }
-    public void setArchivos(ArrayList<Archivo> archivos) {
-        this.archivos = archivos;
-    }
-    
+     
     //Constructor
     public void crearCommit(String aut, String mens, ArrayList<Archivo> arc){
         this.autor = aut;
