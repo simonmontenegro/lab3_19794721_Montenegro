@@ -3,6 +3,7 @@ package laboratorio3_19794721;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Scanner;
 
 public class Zonas {
     //Atributos
@@ -33,18 +34,75 @@ public class Zonas {
     }
     
     //Metodos
-    public void gitInit(String nombre, String autor){
+    public void gitInit(){
         WorkSpace ws = new WorkSpace();
         Index ind = new Index();
         LocalRepository lr = new LocalRepository();
         RemoteRepository rr = new RemoteRepository();
         
+        Scanner input = new Scanner(System.in);
+        System.out.println("Ingrese nombre del repositorio:");
+        String nombre = input.nextLine();
+        Scanner input2 = new Scanner(System.in);
+        System.out.println("Ingrese autor del repositorio:");
+        String autor = input2.nextLine();
+        
         this.crearZonas(nombre, autor, ws, ind, lr, rr);
     }
     
-    public void crearNuevoArchivo(String nombre, String contenido, Zonas zona){
+    public void crearNuevoArchivo(){
         Archivo nuevoArchivo = new Archivo();
+        
+        Scanner input = new Scanner(System.in);
+        System.out.println("Ingrese nombre del archivo:");
+        String nombre = input.nextLine();
+        Scanner input2 = new Scanner(System.in);
+        System.out.println("Ingrese contenido del archivo:");
+        String contenido = input2.nextLine();
+        
         nuevoArchivo.crearArchivo(nombre, contenido);
         this.workSpace.archivos.add(nuevoArchivo);
+    }
+    
+    public void gitAdd(){
+        Scanner input = new Scanner(System.in);
+        System.out.println("¿Cuantos archivos desea añadir? ('-1' para añadir todos)");
+        try{
+            int cantidadArchivos = input.nextInt();
+            while(cantidadArchivos > this.workSpace.archivos.size()){
+                System.out.println("Esta intentando ingresar mas archivos de los que existen, intentelo denuevo.");
+                cantidadArchivos = input.nextInt();
+            }
+            if(cantidadArchivos == -1){
+                for (int i = 0; i < this.workSpace.archivos.size(); i++) {
+                    this.index.archivos.add(this.workSpace.archivos.get(i));
+                }
+            }
+            
+            else{
+                while(cantidadArchivos != 0){
+                    Scanner input2 = new Scanner(System.in);
+                    System.out.println("Ingrese nombre de archivo:");
+                    String nombreArchivo = input2.nextLine();
+                    int flag = 0;
+                    for(int i = 0; i < this.workSpace.archivos.size(); i++) {
+                        if(nombreArchivo.equals(this.workSpace.archivos.get(i).nombre)){
+                            this.index.archivos.add(this.workSpace.archivos.get(i));
+                            flag = 1;
+                            break;
+                        }
+                    }
+                    if(flag == 1){
+                        cantidadArchivos--;
+                    }
+                    else{
+                        System.out.println("El archivo ingresado no existe.");
+                    }
+                }
+            }
+        }catch(Exception e){
+            System.out.println("Error, por favor ingrese un numero.");
+        }
+        
     }
 }
