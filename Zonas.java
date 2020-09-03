@@ -101,8 +101,27 @@ public class Zonas {
                 }
             }
         }catch(Exception e){
-            System.out.println("Error, por favor ingrese un numero.");
+            System.out.println("Error, no se ingresó un caracter valido.");
         }
         
+    }
+    public void gitCommit(){
+        Scanner input = new Scanner(System.in);
+        System.out.println("Ingrese mensaje asociado a su commit");
+        String mensaje = input.nextLine();
+        
+        Commit nuevoCommit = new Commit();
+        nuevoCommit.autor = this.autorRepositorio;
+        nuevoCommit.mensaje = mensaje;
+        for (int i = 0; i < this.index.archivos.size(); i++) {
+            nuevoCommit.archivos.add(this.index.archivos.get(i));
+        }
+        this.localRepository.commits.add(nuevoCommit);
+    }
+    
+    public void gitPush(){
+        for (int i = 0; i < this.localRepository.commits.size(); i++) {
+            this.remoteRepository.commits.add(this.localRepository.commits.get(i));
+        }
     }
 }

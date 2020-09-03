@@ -12,8 +12,10 @@ public class Laboratorio3_19794721 {
         zonas.crearNuevoArchivo();
         zonas.crearNuevoArchivo();
         zonas.gitAdd();
+        zonas.gitCommit();
+        zonas.gitPush();
         for (int i = 0; i < zonas.index.archivos.size(); i++) {
-            System.out.println(zonas.index.archivos.get(i).nombre);
+            System.out.println(zonas.remoteRepository.commits.get(0).archivos.get(i).nombre);
         }
     }
     
