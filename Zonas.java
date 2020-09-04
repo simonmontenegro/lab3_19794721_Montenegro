@@ -111,11 +111,7 @@ public class Zonas {
         String mensaje = input.nextLine();
         
         Commit nuevoCommit = new Commit();
-        nuevoCommit.autor = this.autorRepositorio;
-        nuevoCommit.mensaje = mensaje;
-        for (int i = 0; i < this.index.archivos.size(); i++) {
-            nuevoCommit.archivos.add(this.index.archivos.get(i));
-        }
+        nuevoCommit.crearCommit(this.autorRepositorio, mensaje, this.index.archivos);
         this.localRepository.commits.add(nuevoCommit);
     }
     
@@ -136,6 +132,32 @@ public class Zonas {
         }
         else{
             System.out.println("¿RemoteRepository actualizado?: No");
+        }
+    }
+    public void gitLog(){
+        if(this.localRepository.commits.size() < 5){
+            System.out.println("El localRepository posee " + this.localRepository.commits.size() + " commits:");
+            for (int i = 0; i < this.localRepository.commits.size(); i++) {
+                System.out.println("\tFecha: " + this.localRepository.commits.get(i).tiempo);
+                System.out.println("\tMensaje: " + this.localRepository.commits.get(i).mensaje);
+                System.out.print("\tArchivos -> ");
+                for (int j = 0; j < this.localRepository.commits.get(i).archivos.size(); j++) {
+                    System.out.print(this.localRepository.commits.get(i).archivos.get(j).nombre + "  ");
+                }
+            }
+            System.out.println();
+        }
+        else{
+            System.out.println("El localRepository posee " + this.localRepository.commits.size() + " commits:");
+            for (int i = this.localRepository.commits.size() - 5; i < this.localRepository.commits.size(); i++) {
+                System.out.println("\tFecha: " + this.localRepository.commits.get(i).tiempo);
+                System.out.println("\tMensaje: " + this.localRepository.commits.get(i).mensaje);
+                System.out.print("\tArchivos -> ");
+                for (int j = 0; j < this.localRepository.commits.get(i).archivos.size(); j++) {
+                    System.out.print(this.localRepository.commits.get(i).archivos.get(j).nombre + "  ");
+                }
+            }
+            System.out.println();
         }
     }
 }
