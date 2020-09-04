@@ -124,4 +124,18 @@ public class Zonas {
             this.remoteRepository.commits.add(this.localRepository.commits.get(i));
         }
     }
+    public void gitStatus(){
+        System.out.println("Información del repositorio:");
+        System.out.println("Nombre del repositorio: " + this.nombreRepositorio);
+        System.out.println("Autor del repositorio: " + this.autorRepositorio);
+        System.out.println("Cantidad de archivos en el WorkSpace: " + this.workSpace.archivos.size());
+        System.out.println("Cantidad de archivos en el Index: " + this.index.archivos.size());
+        System.out.println("Cantidad de commits en el LocalRepository: " + this.localRepository.commits.size());
+        if(this.remoteRepository.commits.size() == this.localRepository.commits.size()){
+            System.out.println("¿RemoteRepository actualizado?: Si");
+        }
+        else{
+            System.out.println("¿RemoteRepository actualizado?: No");
+        }
+    }
 }
