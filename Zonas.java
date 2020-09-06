@@ -41,10 +41,10 @@ public class Zonas {
         RemoteRepository rr = new RemoteRepository();
         
         Scanner input = new Scanner(System.in);
-        System.out.println("Ingrese nombre del repositorio:");
+        System.out.print("Ingrese nombre del repositorio:\t");
         String nombre = input.nextLine();
         Scanner input2 = new Scanner(System.in);
-        System.out.println("Ingrese autor del repositorio:");
+        System.out.print("Ingrese autor del repositorio:\t");
         String autor = input2.nextLine();
         
         this.crearZonas(nombre, autor, ws, ind, lr, rr);
@@ -54,10 +54,11 @@ public class Zonas {
         Archivo nuevoArchivo = new Archivo();
         
         Scanner input = new Scanner(System.in);
-        System.out.println("Ingrese nombre del archivo:");
+        System.out.println("********************************************************************");
+        System.out.print("Ingrese nombre del archivo:\t");
         String nombre = input.nextLine();
         Scanner input2 = new Scanner(System.in);
-        System.out.println("Ingrese contenido del archivo:");
+        System.out.print("Ingrese contenido del archivo:\t");
         String contenido = input2.nextLine();
         
         nuevoArchivo.crearArchivo(nombre, contenido);
@@ -66,11 +67,15 @@ public class Zonas {
     
     public void gitAdd(){
         Scanner input = new Scanner(System.in);
-        System.out.println("¿Cuantos archivos desea añadir? ('-1' para añadir todos)");
         try{
+            System.out.println("********************************************************************");
+            System.out.println("¿Cuantos archivos desea añadir? ('-1' para añadir todos)");
             int cantidadArchivos = input.nextInt();
             while(cantidadArchivos > this.workSpace.archivos.size()){
-                System.out.println("Esta intentando ingresar mas archivos de los que existen, intentelo denuevo.");
+                System.out.println("********************************************************************");
+                System.out.println("***** Esta intentando ingresar mas archivos de los que existen.*****");
+                System.out.println("********************************************************************");
+                System.out.println("¿Cuantos archivos desea añadir? ('-1' para añadir todos)");
                 cantidadArchivos = input.nextInt();
             }
             if(cantidadArchivos == -1){
@@ -82,7 +87,7 @@ public class Zonas {
             else{
                 while(cantidadArchivos != 0){
                     Scanner input2 = new Scanner(System.in);
-                    System.out.println("Ingrese nombre de archivo:");
+                    System.out.print("Ingrese nombre de archivo:\t");
                     String nombreArchivo = input2.nextLine();
                     int flag = 0;
                     for(int i = 0; i < this.workSpace.archivos.size(); i++) {
@@ -107,7 +112,8 @@ public class Zonas {
     }
     public void gitCommit(){
         Scanner input = new Scanner(System.in);
-        System.out.println("Ingrese mensaje asociado a su commit");
+        System.out.println("********************************************************************");
+        System.out.print("Ingrese mensaje asociado a su commit:\t");
         String mensaje = input.nextLine();
         
         Commit nuevoCommit = new Commit();
@@ -122,21 +128,22 @@ public class Zonas {
     }
     public void gitStatus(){
         System.out.println("Información del repositorio:");
-        System.out.println("Nombre del repositorio: " + this.nombreRepositorio);
-        System.out.println("Autor del repositorio: " + this.autorRepositorio);
-        System.out.println("Cantidad de archivos en el WorkSpace: " + this.workSpace.archivos.size());
-        System.out.println("Cantidad de archivos en el Index: " + this.index.archivos.size());
-        System.out.println("Cantidad de commits en el LocalRepository: " + this.localRepository.commits.size());
+        System.out.println("\tNombre del repositorio: " + this.nombreRepositorio);
+        System.out.println("\tAutor del repositorio: " + this.autorRepositorio);
+        System.out.println("\tCantidad de archivos en el WorkSpace: " + this.workSpace.archivos.size());
+        System.out.println("\tCantidad de archivos en el Index: " + this.index.archivos.size());
+        System.out.println("\tCantidad de commits en el LocalRepository: " + this.localRepository.commits.size());
         if(this.remoteRepository.commits.size() == this.localRepository.commits.size()){
-            System.out.println("¿RemoteRepository actualizado?: Si");
+            System.out.println("\t¿RemoteRepository actualizado?: Si");
         }
         else{
-            System.out.println("¿RemoteRepository actualizado?: No");
+            System.out.println("\t¿RemoteRepository actualizado?: No");
         }
     }
     public void gitLog(){
         if(this.localRepository.commits.size() < 5){
-            System.out.println("El localRepository posee " + this.localRepository.commits.size() + " commits:");
+            if(this.localRepository.commits.size() == 1)System.out.println("El localRepository posee 1 commit:");
+            else System.out.println("El localRepository posee " + this.localRepository.commits.size() + " commits:");
             for (int i = 0; i < this.localRepository.commits.size(); i++) {
                 System.out.println("\tFecha: " + this.localRepository.commits.get(i).tiempo);
                 System.out.println("\tMensaje: " + this.localRepository.commits.get(i).mensaje);
